@@ -14,6 +14,19 @@ int rt_string(char* str, int size, FILE* stream) {
     return 1;
 }
 
+int rt_juststring(char* str, int numChars, FILE* stream) {
+    size_t charsRead = 0;
+    while(numChars-1) {
+        char* readPos = str + charsRead;
+        if(fgets(readPos, numChars, stream) == NULL)
+            return 0;
+        size_t charsReadThisTime = strlen(readPos);
+        charsRead += charsReadThisTime;
+        numChars -= charsReadThisTime;
+    }
+    return 1;
+}
+
 int rt_int(int* out, FILE* stream) {
 }
 
